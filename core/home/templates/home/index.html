@@ -1,0 +1,66 @@
+
+
+{% extends "base.html" %}
+{%block start%}
+    <h1>This is index page</h1>
+    <a href="/contact/">
+        contact
+    </a>|
+    <a href="/about/">
+        about
+    </a>
+
+
+
+    <table class="container">
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>can vote</th>
+        </tr>
+        {% for people in pepoles %}
+        <tr>
+            <td>{{ forloop.counter }}
+                {{ text |truncatechars:9 }}
+
+
+
+
+            </td>
+            <td>{{ people.name }}</td>
+            <td>{{ people.age }}</td>
+            <td  {% if people.age <= 18 %} style="background-color: red;"  {% endif  %}>
+
+                {% if people.age >= 18 %}
+                    👍
+                    
+                {% else %}
+                    👎
+
+                {% endif  %}
+            </td>
+
+
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No data available</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+    <p>
+        
+        {% if "cucumber" in vagetables   %}
+        Avalibble
+
+        {% else %}
+        not Available
+
+        {%endif%}
+    </p>
+
+{%endblock%}
